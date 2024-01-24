@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('MORB_DISCORD_TOKEN')
 
-client = discord.Client()
+client = discord.Client(intents=discord.Intents.default())
 
 
 

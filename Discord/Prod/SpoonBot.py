@@ -3,15 +3,21 @@
 import os
 import discord
 import random
-
+import logging
+from discord import Intents
+from discord.ext import commands 
 from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('SPOON_DISCORD_TOKEN')
 
-client = discord.Client()
+intents = Intents.default()
+intents.message_content = True
+
+client = commands.Bot(command_prefix="", intents=intents)
 
 
+handler = logging.FileHandler(filename=r"C:\Users\Administrator\Documents\GitHub\DiscordBots\Discord\Prod\Logs\SpoonBotLog.txt", encoding='utf-8', mode='w')
 
 @client.event
 async def on_ready():
@@ -40,7 +46,7 @@ async def on_message(message):
         randy = random.randint(1,2)
         if randy == 1:
             response = spoon
-            await message.channel.send(response, file=discord.File("spoon.png"))
+            await message.channel.send(response, file=discord.File(r"C:\users\administrator\documents\GitHub\DiscordBots\Discord\Prod\spoon.png"))
         elif randy == 2:
             await message.add_reaction('\U0001f944')
         else:
@@ -58,4 +64,4 @@ async def on_message(message):
         response = random.choice(knife)
         await message.channel.send(response)
 
-client.run(TOKEN)
+client.run(TOKEN, log_handler=handler)
