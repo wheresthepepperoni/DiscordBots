@@ -52,9 +52,18 @@ async def on_message(message):
         else:
             response = broken
             await message.channel.send(response)
+            
     if 'fork' in message.content.lower():
-        response = random.choice(fork)
-        await message.channel.send(response)
+        randy = random.randint(1,2)
+        if randy == 1:
+            response = fork
+            await message.channel.send(response, file=discord.File(r"C:\users\administrator\documents\GitHub\DiscordBots\Discord\Prod\fork.png"))
+        elif randy == 2:
+            response = random.choice(fork)
+            await message.channel.send(response)
+        else:
+            response = broken
+            await message.channel.send(response)
 
     if 'knife' in message.content.lower():
         response = random.choice(knife)
