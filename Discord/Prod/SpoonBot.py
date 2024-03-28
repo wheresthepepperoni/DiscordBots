@@ -56,7 +56,7 @@ async def on_message(message):
     if 'fork' in message.content.lower():
         randy = random.randint(1,2)
         if randy == 1:
-            response = fork
+            response = random.choice(fork)
             await message.channel.send(response, file=discord.File(r"C:\users\administrator\documents\GitHub\DiscordBots\Discord\Prod\fork.png"))
         elif randy == 2:
             response = random.choice(fork)
